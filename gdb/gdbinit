@@ -1,0 +1,37 @@
+# for code to run arm...gbd.py
+#export LD_LIBRARY_PATH=/lib/x86_64-linux-gnu:/home/leroy/.platformio/packages/toolchain-gccarmnoneeabi/bin
+# export PATH=/usr/local/bin:$PATH
+#export PYTHONHOME=/usr/local
+set data-directory /home/leroy/tmp/gdb-data
+
+# JLink NRF52840 work around for initial sig
+define restart_work
+   monitor reset
+   shell sleep 1
+   cont
+end
+
+# history
+set history save on
+set history size 10000
+set history filename ~/.gdb_history
+
+# xxd
+
+define xxd
+  dump binary memory /tmp/dump.bin $arg0 ((char *)$arg0)+$arg1
+  shell xxd /tmp/dump.bin
+end
+document xxd
+#  Runs xxd on a memory ADDR and LENGTH
+#
+  xxd ADDR LENTH
+end
+
+# Print backtrace of all threads
+define btall
+thread apply all backtrace
+end
+
+source /home/leroy/gdbTest/PyCortexMDebug/scripts/gdb.py 
+svd /home/leroy/Documents/PlatformIO/Projects/WisBlock_MySensors/assets/PYTHON/cmsis-svd/data/Nordic/nrf52840.svd

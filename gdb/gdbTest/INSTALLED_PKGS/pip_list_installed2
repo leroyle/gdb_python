@@ -1,0 +1,13 @@
+Package                       Version
+----------------------------- -------
+backports.functools-lru-cache 1.5
+beautifulsoup4                4.8.2
+chardet                       3.0.4
+html5lib                      1.0.1
+lxml                          4.5.0
+pip                           20.3.4
+setuptools                    44.0.0
+six                           1.14.0
+soupsieve                     1.9.5
+webencodings                  0.5.1
+wheel                         0.37.1
